@@ -18,8 +18,7 @@ from django.urls import path, include
 
 api_urlpatterns = [
     path('users/', include('users.urls')),
-    # path('3d_models/', include('models_3d.urls')),
-    # path('admin/', include('administrators.urls'))
+    path('posts/', include('posts.urls')),
 ]
 
 

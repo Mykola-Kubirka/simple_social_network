@@ -26,7 +26,7 @@ class UserAdmin(BaseUserAdmin):
     list_filter = ()
     search_fields = ('email', )
     filter_horizontal = ()
-    readonly_fields = ('last_login','last_request',)
+    readonly_fields = ('last_login', 'last_request',)
 
 
 admin.site.register(User, UserAdmin)
