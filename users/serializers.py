@@ -27,3 +27,28 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         )
 
         return user
+
+
+class UsersActivitySerializer(serializers.ModelSerializer):
+    last_login = serializers.SerializerMethodField()
+    last_request = serializers.SerializerMethodField()
+    registration_date = serializers.SerializerMethodField()
+
+    class Meta:
+        model = User
+        fields = ('id', 'email', 'registration_date', 'last_login', 'last_request')
+
+    def get_registration_date(self, obj):
+        return obj.registration_date.strftime('%H:%M, %d-%m-%Y')
+
+    def get_last_login(self, obj):
+        try:
+            return obj.last_login.strftime('%H:%M, %d-%m-%Y')
+        except AttributeError:
+            return None
+
+    def get_last_request(self, obj):
+        try:
+            return obj.last_request.strftime('%H:%M, %d-%m-%Y')
+        except AttributeError:
+            return None
