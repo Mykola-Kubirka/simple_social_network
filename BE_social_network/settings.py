@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 
     'users',
     'posts',
-    'analytics'
+    'analytics',
 
     'rest_framework',
     'rest_framework_simplejwt',
