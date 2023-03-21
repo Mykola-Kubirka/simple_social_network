@@ -1,3 +1,4 @@
+from django.utils.decorators import method_decorator
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAdminUser, IsAuthenticated
@@ -11,7 +12,7 @@ from posts.serializers import UserPostSerializer
 class UserPostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = UserPostSerializer
-    permission_classes = [IsOwnerOrReadOnly | IsAdminUser]
+    permission_classes = [IsAuthenticated, IsOwnerOrReadOnly | IsAdminUser]
 
     @action(methods=['POST'], detail=True, permission_classes=[IsAuthenticated])
     def like(self, request, *args, **kwargs):
